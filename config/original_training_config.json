@@ -1,0 +1,22 @@
+{
+  "model": "Qwen3-0.6B + RACE + dual view + DCER",
+  "initialization": "Qwen/Qwen3-0.6B",
+  "epochs": 1,
+  "max_length": 4096,
+  "lora_r": 8,
+  "lora_alpha": 32,
+  "learning_rate": 8e-05,
+  "batch": 8,
+  "micro_batch": 4,
+  "checkpoint_steps": 250,
+  "seed": 20261027,
+  "loss": "mean classification cross-entropy over both training orders",
+  "train_orders": [
+    "url_html",
+    "html_url"
+  ],
+  "test_order": "html_url",
+  "threshold": 0.5,
+  "temperature": 1.0,
+  "dataset": "PhreshPhish official train and test"
+}

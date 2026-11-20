@@ -1,0 +1,11 @@
+# Install a BF16-capable CUDA build of PyTorch separately. Reference: 2.5.1+cu121.
+transformers==5.17.0
+peft==0.21.0
+accelerate==1.15.0
+tokenizers==0.23.2
+safetensors==0.8.0
+numpy==2.2.6
+scikit-learn==1.7.2
+lxml==6.1.3
+idna==3.20
+publicsuffix2==2.20191221

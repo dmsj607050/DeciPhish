@@ -1,0 +1,17 @@
+{
+  "model": "Qwen3-0.6B + RACE + dual-view training + DCER",
+  "max_length": 4096,
+  "test_order": "html_url",
+  "threshold": 0.5,
+  "temperature": 1.0,
+  "labels": {
+    "0": "BENIGN",
+    "1": "PHISHING"
+  },
+  "dcer": {
+    "dimension": 256,
+    "heads": 4,
+    "chunks_per_region": 4,
+    "initial_alpha": 0.01
+  }
+}

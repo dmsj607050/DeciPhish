@@ -1,0 +1,18 @@
+# Local checkpoints and research inputs
+/model/
+/data/
+/runs/
+/logs/
+/verification/
+/results/
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.npz
+*.parquet
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/

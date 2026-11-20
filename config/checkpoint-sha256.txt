@@ -1,0 +1,4 @@
+17740d941328368dce07af6e89ef54d48ce0ea820e6dce8f28833c63364a718f  ./model/adapter/adapter_config.json
+c56a39b4d1802491586be9f4192139910d49b025d4f59b6176d093c052013df0  ./model/adapter/adapter_model.safetensors
+138385c8ea1e55f88513ff76987c82b46d2bf1bf408479a5ae764ed1ad588250  ./model/adapter/dcer.pt
+f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b  ./model/base/model.safetensors
