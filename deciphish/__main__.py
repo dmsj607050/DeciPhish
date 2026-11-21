@@ -42,15 +42,28 @@ def main():
     predict_parser.add_argument(
         "--html", type=Path, required=True, help="Offline HTML snapshot"
     )
-    for command in (train_parser, eval_parser, predict_parser):
+    serve_parser = commands.add_parser("serve", help="Serve browser snapshots on loopback HTTP")
+    serve_parser.add_argument("--port", type=int, default=8765)
+    serve_parser.add_argument("--device", default="auto", help="auto, cpu, or a CUDA device such as cuda:0")
+    serve_parser.add_argument("--profile", choices=("phreshphish", "ablation"), default="phreshphish")
+    for command in (train_parser, eval_parser, predict_parser, serve_parser):
         command.add_argument(
             "--base-model", type=Path, required=True, help="Local Qwen3-0.6B directory"
         )
-    for command in (eval_parser, predict_parser):
+    for command in (eval_parser, predict_parser, serve_parser):
         command.add_argument(
             "--checkpoint", type=Path, required=True, help="LoRA and DCER checkpoint"
         )
     args = parser.parse_args()
+
+    if args.command == "serve":
+        if not 1 <= args.port <= 65535:
+            parser.error("--port must be between 1 and 65535")
+        from .server import serve
+
+        serve(args.base_model.resolve(strict=True), args.checkpoint.resolve(strict=True),
+              port=args.port, device=args.device, profile=args.profile)
+        return
 
     # The original training uses one CUDA device and expandable allocator segments.
     if os.name != "nt":

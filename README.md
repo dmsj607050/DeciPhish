@@ -38,6 +38,26 @@ python scripts/infer.py --base-model model/base --adapter runs/my-training/check
 
 The command returns the phishing score and prediction (`0` benign, `1` phishing). It reads the supplied HTML file; it neither visits the URL nor executes page scripts. Use `--device cuda:0` for GPU inference.
 
+## Browser extension
+
+The [Chrome / Edge extension](browser-extension/README.md) checks the active
+page's URL and DOM with the same RACE/DCER model. Start the model service from
+the repository root:
+
+```sh
+python -m deciphish serve --base-model model/base --checkpoint runs/my-training/checkpoint --device auto
+```
+
+Then open `chrome://extensions` or `edge://extensions`, enable **Developer
+mode**, choose **Load unpacked**, and select `browser-extension/`. Reload any
+already open pages. Suspected phishing pages display a red English warning;
+the extension popup shows the score, service status, and a **Scan again** button.
+
+The default API is `http://127.0.0.1:8765`. The popup can save another loopback
+HTTP address, including an SSH-forwarded server model. See the extension README
+for setup, permissions, privacy, and troubleshooting. The model checkpoint must
+include `dcer.pt`; a plain URL/HTML LoRA checkpoint is not interchangeable.
+
 ## Layout
 
 | Path | Purpose |
@@ -46,5 +66,7 @@ The command returns the phishing score and prediction (`0` benign, `1` phishing)
 | `scripts/` | Standalone inference and the checksum-locked PhreshPhish training launcher |
 | `config/` | Inference settings, training settings, environment, and archived checkpoint checksums |
 | `examples/` | Benign HTML example for offline inference |
+| `browser-extension/` | Unpacked Chrome / Edge extension and installation guide |
+| `tests/` | HTTP service and extension workflow checks |
 
 Model weights, datasets, predictions, and experiment logs are stored separately from Git.

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body { font: 13px/1.5 "Segoe UI", Arial, sans-serif; width: 320px; margin: 0; padding: 12px; color: #111; }
+    h3 { margin: 0 0 8px; font-size: 14px; }
+    .row { margin: 4px 0; }
+    .label { color: #555; }
+    #verdict { font-weight: 600; }
+    .risky { color: #b91c1c; }
+    .safe { color: #15803d; }
+    #url { word-break: break-all; color: #333; }
+    button { margin-top: 8px; padding: 4px 10px; cursor: pointer; }
+    input { box-sizing: border-box; width: 100%; padding: 6px; margin-top: 4px; }
+    fieldset { margin-top: 16px; border: 1px solid #ddd; }
+    #settings-status { display: block; margin-top: 6px; }
+    button:focus-visible, input:focus-visible { outline: 2px solid #b91c1c; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <h3>DeciPhish Local Guard</h3>
+  <div class="row"><span class="label">Service: </span><span id="health">Checking…</span></div>
+  <div class="row"><span class="label">Page: </span><span id="url">—</span></div>
+  <div class="row"><span class="label">Result: </span><span id="verdict">—</span></div>
+  <div class="row"><span class="label">Model score: </span><span id="score">—</span></div>
+  <div class="row"><span class="label">Scan time: </span><span id="latency">—</span></div>
+  <button id="recheck" type="button">Scan again</button>
+  <fieldset>
+    <legend>Model connection</legend>
+    <label for="service-url">Loopback service address</label>
+    <input id="service-url" type="url" spellcheck="false" placeholder="http://127.0.0.1:8765" />
+    <button id="save-service" type="button">Save address</button>
+    <span id="settings-status" role="status"></span>
+  </fieldset>
+  <script src="service-config.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
